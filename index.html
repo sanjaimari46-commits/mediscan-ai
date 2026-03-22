@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediScan AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <h1>🏥 MediScan AI</h1>
+        <p>Smart Medical Report Analyzer</p>
+    </nav>
+
+    <div class="container">
+        <div class="upload-box" id="uploadBox">
+            <div class="upload-icon">📄</div>
+            <h2>Upload Your Blood Test Report</h2>
+            <p>PDF format only • Free • Instant Analysis</p>
+            <input type="file" id="fileInput" accept=".pdf" hidden>
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                Choose PDF File
+            </button>
+            <p id="fileName" class="file-name"></p>
+            <button class="analyze-btn" id="analyzeBtn" onclick="analyzeReport()" style="display:none">
+                🔍 Analyze Report
+            </button>
+        </div>
+
+        <div class="loading" id="loading" style="display:none">
+            <div class="spinner"></div>
+            <p>AI is analyzing your report...</p>
+        </div>
+
+        <div class="results" id="results" style="display:none">
+            <h2>📊 Analysis Results</h2>
+            
+            <div class="summary-box">
+                <h3>📋 Summary</h3>
+                <p id="summary"></p>
+            </div>
+
+            <div class="values-grid">
+                <div class="normal-box">
+                    <h3>✅ Normal Values</h3>
+                    <ul id="normalList"></ul>
+                </div>
+                <div class="abnormal-box">
+                    <h3>⚠️ Abnormal Values</h3>
+                    <ul id="abnormalList"></ul>
+                </div>
+            </div>
+
+            <div class="advice-box" id="adviceBox">
+                <h3>💊 Health Advice</h3>
+                <p id="advice"></p>
+            </div>
+
+            <div class="doctor-box" id="doctorBox">
+                <p id="doctorAdvice"></p>
+            </div>
+
+            <button class="reset-btn" onclick="resetForm()">
+                🔄 Analyze Another Report
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
